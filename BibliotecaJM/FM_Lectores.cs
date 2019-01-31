@@ -98,11 +98,12 @@ namespace BibliotecaJM
             {
                 MessageBox.Show("Error al escribir los datos"+ex.Message);
             }
+            Busqueda();
         }
 
         private void bCancelar_Click(object sender, EventArgs e)
         {
-
+            Busqueda();
         }
     }
 }
