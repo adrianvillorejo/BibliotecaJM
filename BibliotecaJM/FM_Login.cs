@@ -28,6 +28,8 @@ namespace BibliotecaJM
             {
                 if (usuariosTableAdapter.FillByLogin(dS_Usuarios.usuarios,usuario,contraseña)==1)
                 {
+                    principal.usuarioActual.Nombre = usuario;
+                    principal.usuarioActual.TipoUsuario = 
                     principal.ShowDialog();
                     this.Close();
                 }
