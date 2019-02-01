@@ -23,8 +23,6 @@ namespace BibliotecaJM
             FM_Principal principal = new FM_Principal();
             string usuario = tbUsuario.Text;
             string contraseña = tbContraseña.Text;
-            string u = "";
-            string c = "";
 
             if (!usuario.Equals("") && !contraseña.Equals(""))
             {
