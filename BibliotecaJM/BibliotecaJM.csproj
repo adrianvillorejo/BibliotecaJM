@@ -148,6 +148,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioActual.cs" />
+    <EmbeddedResource Include="FM_Libros.resx">
+      <DependentUpon>FM_Libros.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FM_Modelo.resx">
       <DependentUpon>FM_Modelo.cs</DependentUpon>
     </EmbeddedResource>
