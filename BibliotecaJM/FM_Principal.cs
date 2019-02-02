@@ -13,34 +13,64 @@ namespace BibliotecaJM
     public partial class FM_Principal : Form
     {
         UsuarioActual usuarioActual = new UsuarioActual();
+        FM_Login fm = new FM_Login();
         public FM_Principal()
         {
             InitializeComponent();
         }
-
-        private void FM_Principal_Load(object sender, EventArgs e)
+        public FM_Principal(string usuario, string tipo)
         {
-            usuarioActual.Nombre = "admin";
-            usuarioActual.TipoUsuario = "A";
+            usuarioActual.Nombre = usuario;
+            usuarioActual.TipoUsuario = tipo;
+            InitializeComponent();
         }
+        
         private void tsbLectores_Click(object sender, EventArgs e)
         {
-            VisualizarFormularioYTítulo(new FM_Lectores(usuarioActual),"Mantenimiento lectores");
+            if (usuarioActual.TipoUsuario.Equals("L"))
+            {
+                MessageBox.Show("No tienes perimisos, contacta con el administrador");
+            }
+            else
+            {
+                VisualizarFormularioYTítulo(new FM_Lectores(usuarioActual), "Mantenimiento lectores");
+            }
         }
 
         private void tsbLibros_Click(object sender, EventArgs e)
         {
-            VisualizarFormularioYTítulo(new FM_Libros(usuarioActual), "Mantenimiento libros");
+            if (usuarioActual.TipoUsuario.Equals("L"))
+            {
+                MessageBox.Show("No tienes perimisos, contacta con el administrador");
+            }
+            else
+            {
+                VisualizarFormularioYTítulo(new FM_Libros(usuarioActual), "Mantenimiento libros");
+            }
         }
 
         private void tsbPréstamos_Click(object sender, EventArgs e)
         {
-            VisualizarFormularioYTítulo(new FM_Prestamos(usuarioActual), "Préstamos");
+            if (usuarioActual.TipoUsuario.Equals("L"))
+            {
+                MessageBox.Show("No tienes perimisos, contacta con el administrador");
+            }
+            else
+            {
+                VisualizarFormularioYTítulo(new FM_Prestamos(usuarioActual), "Préstamos");
+            }
         }
 
         private void tsbDevoluciones_Click(object sender, EventArgs e)
         {
-            VisualizarFormularioYTítulo(new FM_Devoluciones(usuarioActual), "Devoluciones");
+            if (usuarioActual.TipoUsuario.Equals("L"))
+            {
+                MessageBox.Show("No tienes perimisos, contacta con el administrador");
+            }
+            else
+            {
+                VisualizarFormularioYTítulo(new FM_Devoluciones(usuarioActual), "Devoluciones");
+            }
         }
 
         private void tsbListados_Click(object sender, EventArgs e)
@@ -55,7 +85,14 @@ namespace BibliotecaJM
 
         private void tsbConfiguración_Click(object sender, EventArgs e)
         {
-            VisualizarFormularioYTítulo(new FM_Configuracion(usuarioActual), "Configuración");
+            if (usuarioActual.TipoUsuario.Equals("L") || usuarioActual.TipoUsuario.Equals("O"))
+            {
+                MessageBox.Show("No tienes perimisos, contacta con el administrador");
+            }
+            else
+            {
+                VisualizarFormularioYTítulo(new FM_Configuracion(usuarioActual), "Configuración");
+            }
         }
         private void VisualizarFormularioYTítulo(Form formulario, string título)
         {

@@ -160,6 +160,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioActual.cs" />
+    <EmbeddedResource Include="FM_Login.resx">
+      <DependentUpon>FM_Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FM_Modelo.resx">
       <DependentUpon>FM_Modelo.cs</DependentUpon>
     </EmbeddedResource>
