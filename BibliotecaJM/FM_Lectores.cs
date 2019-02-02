@@ -14,12 +14,13 @@ namespace BibliotecaJM
 
         public FM_Lectores()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
 
         public FM_Lectores(UsuarioActual usuarioActual)
         {
             this.usuarioActual = usuarioActual;
+            InitializeComponent();
         }
 
         //private void lectoresBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -104,6 +105,13 @@ namespace BibliotecaJM
         private void bCancelar_Click(object sender, EventArgs e)
         {
             Busqueda();
+        }
+
+        private void bLookUp_Click(object sender, EventArgs e)
+        {
+            FMProvincia fm = new FMProvincia();
+            fm.ShowDialog();
+            provincia_lecTextBox.Text = fm.provincia;
         }
     }
 }

@@ -1056,8 +1056,8 @@ SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimi
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT id_lec, nombre_lec, domicilio_lec, fecha_penalizacion_lec FROM dbo.lectore" +
-                "s";
+            this._commandCollection[1].CommandText = "SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec , fecha_penalizacion_lec " +
+                "FROM dbo.lectores";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
