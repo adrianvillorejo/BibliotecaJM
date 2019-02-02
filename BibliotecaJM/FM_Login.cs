@@ -30,6 +30,7 @@ namespace BibliotecaJM
             {
                 if (usuariosTableAdapter.FillByLogin(dS_Usuarios.usuarios,usuario,contraseña)==1)
                 {
+                    this.Visible = false;
                     int posicion = usuariosBindingSource.Position;
                     tipo = dS_Usuarios.usuarios[posicion].tipo_usu;
                     usuarioActual.Nombre = usuario;
