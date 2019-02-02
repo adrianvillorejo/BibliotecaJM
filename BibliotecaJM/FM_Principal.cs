@@ -13,16 +13,18 @@ namespace BibliotecaJM
     public partial class FM_Principal : Form
     {
         UsuarioActual usuarioActual = new UsuarioActual();
+        FM_Login fm = new FM_Login();
         public FM_Principal()
         {
             InitializeComponent();
         }
-
-        private void FM_Principal_Load(object sender, EventArgs e)
+        public FM_Principal(string usuario, string tipo)
         {
-            MessageBox.Show(usuarioActual.Nombre);
-            usuarioActual.TipoUsuario = "A";
+            usuarioActual.Nombre = usuario;
+            usuarioActual.TipoUsuario = tipo;
+            InitializeComponent();
         }
+        
         private void tsbLectores_Click(object sender, EventArgs e)
         {
             VisualizarFormularioYTítulo(new FM_Lectores(usuarioActual),"Mantenimiento lectores");
