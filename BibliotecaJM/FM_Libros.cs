@@ -37,5 +37,10 @@ namespace BibliotecaJM
             this.librosTableAdapter.Fill(this.dS_Libros.libros);
 
         }
+
+        private void bSeccion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

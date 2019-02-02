@@ -145,6 +145,12 @@
     <Compile Include="FM_Principal.Designer.cs">
       <DependentUpon>FM_Principal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FM_Seccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FM_Seccion.Designer.cs">
+      <DependentUpon>FM_Seccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioActual.cs" />
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FM_Principal.resx">
       <DependentUpon>FM_Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FM_Seccion.resx">
+      <DependentUpon>FM_Seccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
