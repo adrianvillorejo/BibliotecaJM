@@ -12,6 +12,8 @@ namespace BibliotecaJM
 {
     public partial class FM_Seccion : Form
     {
+        public int seccion { get; set; }
+
         public FM_Seccion()
         {
             InitializeComponent();
@@ -30,6 +32,14 @@ namespace BibliotecaJM
             // TODO: esta línea de código carga datos en la tabla 'dS_Secciones.secciones' Puede moverla o quitarla según sea necesario.
             this.seccionesTableAdapter.Fill(this.dS_Secciones.secciones);
 
+        }
+
+        private void seccionesDataGridView_DoubleClick(object sender, EventArgs e)
+        {
+            int posicion = seccionesBindingSource.Position;
+            seccion = dS_Secciones.secciones[posicion].id_sec;
+            this.Close();
+            
         }
     }
 }

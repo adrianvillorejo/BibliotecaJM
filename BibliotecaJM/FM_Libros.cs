@@ -21,6 +21,20 @@ namespace BibliotecaJM
         {
             this.usuarioActual = usuarioActual;
             InitializeComponent();
+            modoBusqueda();
+        }
+
+        private void modoBusqueda()
+        {
+            gbBusqueda.Enabled = true;
+            gbEdicion.Enabled = false;
+        }
+
+        private void modoEdicion()
+        {
+            gbBusqueda.Enabled = false;
+            gbEdicion.Enabled = true;
+            titulo_libTextBox.Focus();
         }
 
         private void librosBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -40,7 +54,24 @@ namespace BibliotecaJM
 
         private void bSeccion_Click(object sender, EventArgs e)
         {
+            FM_Seccion fm = new FM_Seccion();
+            fm.ShowDialog();
+            seccion_libTextBox.Text = fm.seccion.ToString();
+        }
 
+        private void bBuscarID_Click(object sender, EventArgs e)
+        {
+            librosTableAdapter.FillByIDLibro(dS_Libros.libros,int.Parse(tbIDBusqueda.Text));
+        }
+
+        private void bBuscarLibro_Click(object sender, EventArgs e)
+        {
+            librosTableAdapter.FillByTitulo(dS_Libros.libros, tbLibro.Text);
+        }
+
+        private void bBuscarAutor_Click(object sender, EventArgs e)
+        {
+            librosTableAdapter.FillByAutor(dS_Libros.libros, tbAutor.Text);
         }
     }
 }

@@ -82,6 +82,7 @@
             this.seccionesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.seccionesDataGridView.Size = new System.Drawing.Size(267, 450);
             this.seccionesDataGridView.TabIndex = 1;
+            this.seccionesDataGridView.DoubleClick += new System.EventHandler(this.seccionesDataGridView_DoubleClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
