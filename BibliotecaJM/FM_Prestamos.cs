@@ -26,6 +26,8 @@ namespace BibliotecaJM
 
         private void FM_Prestamos_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'dS_Configuracion.configuracion' Puede moverla o quitarla según sea necesario.
+            this.configuracionTableAdapter.Fill(this.dS_Configuracion.configuracion);
             // TODO: esta línea de código carga datos en la tabla 'dS_Libros.libros' Puede moverla o quitarla según sea necesario.
             this.librosTableAdapter.Fill(this.dS_Libros.libros);
         }
@@ -61,11 +63,25 @@ namespace BibliotecaJM
         {
             int posicion = librosBindingSource.Position;
             Prestado = dS_Libros.libros[posicion].prestado_sn_lib;
-            MessageBox.Show(Prestado);
             int id = int.Parse(id_lecLabel1.Text);
-            if (Prestado.Equals("N"))
+            DateTime? fechaPena = dS_Lectores.lectores[id].fecha_penalizacion_lec;
+
+            if (Prestado.Contains("N") && librosPrestadosDataGridView.RowCount <= 5)
             {
-                MessageBox.Show(librosPrestadosDataGridView.RowCount.ToString());
+                if (fechaPena.Value==null && fechaPena<DateTime.Today)
+                {
+                    fechaPena = null;
+                    Prestado = "S";
+                    librosBindingSource.EndEdit();
+                    librosTableAdapter.Update(dS_Libros.libros);
+                    librosPrestadosBindingSource.AddNew();
+                    int pos = librosPrestadosBindingSource.Position;
+                    dS_LibrosPrestados.LibrosPrestados[pos].titulo_lib = dS_Libros.libros[posicion].titulo_lib;
+                    dS_LibrosPrestados.LibrosPrestados[pos].fecha_presta_pre = DateTime.Today;
+                    dS_LibrosPrestados.LibrosPrestados[pos].fecha_devol_pre = DateTime.Today.AddDays(dS_Configuracion.configuracion[0].dias_penalizacion_cnf);
+                    librosPrestadosBindingSource.EndEdit();
+                    librosPrestadosTableAdapter.Adapter.Update(dS_LibrosPrestados.LibrosPrestados);
+                }
             }
             else
             {

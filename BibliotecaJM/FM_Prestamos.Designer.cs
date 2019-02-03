@@ -74,6 +74,10 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.librosTableAdapter = new BibliotecaJM.DS_LibrosTableAdapters.librosTableAdapter();
+            this.dS_Configuracion = new BibliotecaJM.DS_Configuracion();
+            this.configuracionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.configuracionTableAdapter = new BibliotecaJM.DS_ConfiguracionTableAdapters.configuracionTableAdapter();
+            this.tableAdapterManager = new BibliotecaJM.DS_ConfiguracionTableAdapters.TableAdapterManager();
             id_lecLabel = new System.Windows.Forms.Label();
             nombre_lecLabel = new System.Windows.Forms.Label();
             domicilio_lecLabel = new System.Windows.Forms.Label();
@@ -88,6 +92,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dS_LibrosPrestados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS_Configuracion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configuracionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // id_lecLabel
@@ -488,6 +494,26 @@
             // 
             this.librosTableAdapter.ClearBeforeFill = true;
             // 
+            // dS_Configuracion
+            // 
+            this.dS_Configuracion.DataSetName = "DS_Configuracion";
+            this.dS_Configuracion.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // configuracionBindingSource
+            // 
+            this.configuracionBindingSource.DataMember = "configuracion";
+            this.configuracionBindingSource.DataSource = this.dS_Configuracion;
+            // 
+            // configuracionTableAdapter
+            // 
+            this.configuracionTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.configuracionTableAdapter = this.configuracionTableAdapter;
+            this.tableAdapterManager.UpdateOrder = BibliotecaJM.DS_ConfiguracionTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
             // FM_Prestamos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -509,6 +535,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dS_LibrosPrestados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS_Configuracion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configuracionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -556,5 +584,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DS_Configuracion dS_Configuracion;
+        private System.Windows.Forms.BindingSource configuracionBindingSource;
+        private DS_ConfiguracionTableAdapters.configuracionTableAdapter configuracionTableAdapter;
+        private DS_ConfiguracionTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }
