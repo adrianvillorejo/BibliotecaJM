@@ -64,13 +64,12 @@ namespace BibliotecaJM
             int posicion = librosBindingSource.Position;
             Prestado = dS_Libros.libros[posicion].prestado_sn_lib;
             int id = int.Parse(id_lecLabel1.Text);
-            DateTime? fechaPena = dS_Lectores.lectores[id].fecha_penalizacion_lec;
+            //DateTime fechaPenalizacion = dS_Lectores.lectores[0].fecha_penalizacion_lec;
 
             if (Prestado.Contains("N") && librosPrestadosDataGridView.RowCount <= 5)
             {
-                if (fechaPena.Value==null && fechaPena<DateTime.Today)
+                if (dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull || dS_Lectores.lectores[0].fecha_penalizacion_lec < DateTime.Today)
                 {
-                    fechaPena = null;
                     Prestado = "S";
                     librosBindingSource.EndEdit();
                     librosTableAdapter.Update(dS_Libros.libros);
