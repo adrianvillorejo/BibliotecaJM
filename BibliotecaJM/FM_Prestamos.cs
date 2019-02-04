@@ -26,6 +26,8 @@ namespace BibliotecaJM
 
         private void FM_Prestamos_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'dS_Prestamos.prestamos' Puede moverla o quitarla según sea necesario.
+            this.prestamosTableAdapter.Fill(this.dS_Prestamos.prestamos);
             // TODO: esta línea de código carga datos en la tabla 'dS_Configuracion.configuracion' Puede moverla o quitarla según sea necesario.
             this.configuracionTableAdapter.Fill(this.dS_Configuracion.configuracion);
             // TODO: esta línea de código carga datos en la tabla 'dS_Libros.libros' Puede moverla o quitarla según sea necesario.
@@ -64,22 +66,34 @@ namespace BibliotecaJM
             int posicion = librosBindingSource.Position;
             Prestado = dS_Libros.libros[posicion].prestado_sn_lib;
             int id = int.Parse(id_lecLabel1.Text);
-            //DateTime fechaPenalizacion = dS_Lectores.lectores[0].fecha_penalizacion_lec;
 
             if (Prestado.Contains("N") && librosPrestadosDataGridView.RowCount <= 5)
             {
-                if (dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull || dS_Lectores.lectores[0].fecha_penalizacion_lec < DateTime.Today)
+                if (dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull() || dS_Lectores.lectores[0].fecha_penalizacion_lec < DateTime.Today)
                 {
-                    Prestado = "S";
-                    librosBindingSource.EndEdit();
-                    librosTableAdapter.Update(dS_Libros.libros);
-                    librosPrestadosBindingSource.AddNew();
-                    int pos = librosPrestadosBindingSource.Position;
-                    dS_LibrosPrestados.LibrosPrestados[pos].titulo_lib = dS_Libros.libros[posicion].titulo_lib;
-                    dS_LibrosPrestados.LibrosPrestados[pos].fecha_presta_pre = DateTime.Today;
-                    dS_LibrosPrestados.LibrosPrestados[pos].fecha_devol_pre = DateTime.Today.AddDays(dS_Configuracion.configuracion[0].dias_penalizacion_cnf);
-                    librosPrestadosBindingSource.EndEdit();
-                    librosPrestadosTableAdapter.Adapter.Update(dS_LibrosPrestados.LibrosPrestados);
+                    try
+                    {
+                        prestamosBindingSource.AddNew();
+                        dS_Prestamos.prestamos[0].id_lec_pre = dS_Lectores.lectores[0].id_lec;
+                        dS_Prestamos.prestamos[0].id_lib_pre = dS_Libros.libros[posicion].id_lib;
+                        dS_Prestamos.prestamos[0].fecha_presta_pre = DateTime.Today;
+                        dS_Prestamos.prestamos[0].fecha_devol_pre = DateTime.Today.AddDays(dS_Configuracion.configuracion[0].dias_prestamo_cnf);
+                        prestamosBindingSource.EndEdit();
+                        prestamosTableAdapter.Update(dS_Prestamos.prestamos);
+                        dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull().Equals(null);
+                        Prestado = "S";
+                        librosBindingSource.EndEdit();
+                        librosTableAdapter.Update(dS_Libros.libros);
+                    }
+                    catch (NoNullAllowedException ex)
+                    {
+                        MessageBox.Show(""+ex);
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("El lector tiene ");
                 }
             }
             else
