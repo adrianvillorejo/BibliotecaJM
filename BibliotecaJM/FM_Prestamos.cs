@@ -65,31 +65,29 @@ namespace BibliotecaJM
         {
             int posicion = librosBindingSource.Position;
             Prestado = dS_Libros.libros[posicion].prestado_sn_lib;
-            int id = int.Parse(id_lecLabel1.Text);
+            int? id = int.Parse(id_lecLabel1.Text);
 
             if (Prestado.Contains("N") && librosPrestadosDataGridView.RowCount <= 5)
             {
                 if (dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull() || dS_Lectores.lectores[0].fecha_penalizacion_lec < DateTime.Today)
                 {
-                    try
+
+                    prestamosBindingSource.AddNew();
+                    if (dS_Lectores.lectores[0].id_lec>0)
                     {
-                        prestamosBindingSource.AddNew();
                         dS_Prestamos.prestamos[0].id_lec_pre = dS_Lectores.lectores[0].id_lec;
-                        dS_Prestamos.prestamos[0].id_lib_pre = dS_Libros.libros[posicion].id_lib;
-                        dS_Prestamos.prestamos[0].fecha_presta_pre = DateTime.Today;
-                        dS_Prestamos.prestamos[0].fecha_devol_pre = DateTime.Today.AddDays(dS_Configuracion.configuracion[0].dias_prestamo_cnf);
-                        prestamosBindingSource.EndEdit();
-                        prestamosTableAdapter.Update(dS_Prestamos.prestamos);
-                        dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull().Equals(null);
-                        Prestado = "S";
-                        librosBindingSource.EndEdit();
-                        librosTableAdapter.Update(dS_Libros.libros);
                     }
-                    catch (NoNullAllowedException ex)
-                    {
-                        MessageBox.Show(""+ex);
-                    }
-                    
+                    dS_Prestamos.prestamos[0].id_lib_pre = dS_Libros.libros[posicion].id_lib;
+                    dS_Prestamos.prestamos[0].fecha_presta_pre = DateTime.Today;
+                    dS_Prestamos.prestamos[0].fecha_devol_pre = DateTime.Today.AddDays(dS_Configuracion.configuracion[0].dias_prestamo_cnf);
+                    prestamosBindingSource.EndEdit();
+                    prestamosTableAdapter.Update(dS_Prestamos.prestamos);
+                    dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull().Equals(null);
+                    Prestado = "S";
+                    librosBindingSource.EndEdit();
+                    librosTableAdapter.Update(dS_Libros.libros);
+
+
                 }
                 else
                 {
@@ -100,7 +98,7 @@ namespace BibliotecaJM
             {
                 MessageBox.Show("No se puede prestar el libro porque ya está prestado o la persona tiene 5 libros prestados");
             }
-            
+
         }
     }
 }
