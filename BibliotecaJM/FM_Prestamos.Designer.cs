@@ -74,13 +74,6 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.librosTableAdapter = new BibliotecaJM.DS_LibrosTableAdapters.librosTableAdapter();
-            this.dS_Configuracion = new BibliotecaJM.DS_Configuracion();
-            this.configuracionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.configuracionTableAdapter = new BibliotecaJM.DS_ConfiguracionTableAdapters.configuracionTableAdapter();
-            this.tableAdapterManager = new BibliotecaJM.DS_ConfiguracionTableAdapters.TableAdapterManager();
-            this.dS_Prestamos = new BibliotecaJM.DS_Prestamos();
-            this.prestamosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.prestamosTableAdapter = new BibliotecaJM.DS_PrestamosTableAdapters.prestamosTableAdapter();
             id_lecLabel = new System.Windows.Forms.Label();
             nombre_lecLabel = new System.Windows.Forms.Label();
             domicilio_lecLabel = new System.Windows.Forms.Label();
@@ -95,10 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dS_LibrosPrestados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Configuracion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configuracionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Prestamos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prestamosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // id_lecLabel
@@ -167,7 +156,6 @@
             this.id_lecLabel1.Name = "id_lecLabel1";
             this.id_lecLabel1.Size = new System.Drawing.Size(200, 23);
             this.id_lecLabel1.TabIndex = 7;
-            this.id_lecLabel1.Text = "label3";
             // 
             // lectoresBindingSource
             // 
@@ -186,7 +174,6 @@
             this.nombre_lecLabel1.Name = "nombre_lecLabel1";
             this.nombre_lecLabel1.Size = new System.Drawing.Size(200, 23);
             this.nombre_lecLabel1.TabIndex = 9;
-            this.nombre_lecLabel1.Text = "label3";
             // 
             // domicilio_lecLabel1
             // 
@@ -195,7 +182,6 @@
             this.domicilio_lecLabel1.Name = "domicilio_lecLabel1";
             this.domicilio_lecLabel1.Size = new System.Drawing.Size(200, 23);
             this.domicilio_lecLabel1.TabIndex = 11;
-            this.domicilio_lecLabel1.Text = "label3";
             // 
             // fecha_penalizacion_lecLabel1
             // 
@@ -204,7 +190,6 @@
             this.fecha_penalizacion_lecLabel1.Name = "fecha_penalizacion_lecLabel1";
             this.fecha_penalizacion_lecLabel1.Size = new System.Drawing.Size(200, 23);
             this.fecha_penalizacion_lecLabel1.TabIndex = 19;
-            this.fecha_penalizacion_lecLabel1.Text = "label3";
             // 
             // bBuscarNombre
             // 
@@ -231,14 +216,14 @@
             this.tbNombreBusqueda.Location = new System.Drawing.Point(74, 60);
             this.tbNombreBusqueda.Name = "tbNombreBusqueda";
             this.tbNombreBusqueda.Size = new System.Drawing.Size(263, 20);
-            this.tbNombreBusqueda.TabIndex = 1;
+            this.tbNombreBusqueda.TabIndex = 2;
             // 
             // tbIDBusqueda
             // 
             this.tbIDBusqueda.Location = new System.Drawing.Point(74, 26);
             this.tbIDBusqueda.Name = "tbIDBusqueda";
             this.tbIDBusqueda.Size = new System.Drawing.Size(263, 20);
-            this.tbIDBusqueda.TabIndex = 1;
+            this.tbIDBusqueda.TabIndex = 0;
             // 
             // label2
             // 
@@ -382,21 +367,21 @@
             this.tbAutorLibro.Location = new System.Drawing.Point(81, 92);
             this.tbAutorLibro.Name = "tbAutorLibro";
             this.tbAutorLibro.Size = new System.Drawing.Size(278, 20);
-            this.tbAutorLibro.TabIndex = 1;
+            this.tbAutorLibro.TabIndex = 2;
             // 
             // tbTituloLibro
             // 
             this.tbTituloLibro.Location = new System.Drawing.Point(81, 61);
             this.tbTituloLibro.Name = "tbTituloLibro";
             this.tbTituloLibro.Size = new System.Drawing.Size(278, 20);
-            this.tbTituloLibro.TabIndex = 1;
+            this.tbTituloLibro.TabIndex = 2;
             // 
             // tbIDLibro
             // 
             this.tbIDLibro.Location = new System.Drawing.Point(81, 31);
             this.tbIDLibro.Name = "tbIDLibro";
             this.tbIDLibro.Size = new System.Drawing.Size(278, 20);
-            this.tbIDLibro.TabIndex = 1;
+            this.tbIDLibro.TabIndex = 2;
             // 
             // label5
             // 
@@ -499,40 +484,6 @@
             // 
             this.librosTableAdapter.ClearBeforeFill = true;
             // 
-            // dS_Configuracion
-            // 
-            this.dS_Configuracion.DataSetName = "DS_Configuracion";
-            this.dS_Configuracion.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // configuracionBindingSource
-            // 
-            this.configuracionBindingSource.DataMember = "configuracion";
-            this.configuracionBindingSource.DataSource = this.dS_Configuracion;
-            // 
-            // configuracionTableAdapter
-            // 
-            this.configuracionTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.configuracionTableAdapter = this.configuracionTableAdapter;
-            this.tableAdapterManager.UpdateOrder = BibliotecaJM.DS_ConfiguracionTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // dS_Prestamos
-            // 
-            this.dS_Prestamos.DataSetName = "DS_Prestamos";
-            this.dS_Prestamos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // prestamosBindingSource
-            // 
-            this.prestamosBindingSource.DataMember = "prestamos";
-            this.prestamosBindingSource.DataSource = this.dS_Prestamos;
-            // 
-            // prestamosTableAdapter
-            // 
-            this.prestamosTableAdapter.ClearBeforeFill = true;
-            // 
             // FM_Prestamos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,10 +505,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dS_LibrosPrestados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Configuracion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configuracionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Prestamos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prestamosBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -605,12 +552,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DS_Configuracion dS_Configuracion;
-        private System.Windows.Forms.BindingSource configuracionBindingSource;
-        private DS_ConfiguracionTableAdapters.configuracionTableAdapter configuracionTableAdapter;
-        private DS_ConfiguracionTableAdapters.TableAdapterManager tableAdapterManager;
-        private DS_Prestamos dS_Prestamos;
-        private System.Windows.Forms.BindingSource prestamosBindingSource;
-        private DS_PrestamosTableAdapters.prestamosTableAdapter prestamosTableAdapter;
     }
 }
