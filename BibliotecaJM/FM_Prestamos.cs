@@ -13,6 +13,11 @@ namespace BibliotecaJM
         public string Prestado { get; set; }
         private UsuarioActual usuarioActual;
 
+        DS_Prestamos.prestamosDataTable prestamos = new DS_Prestamos.prestamosDataTable();
+        DS_Configuracion.configuracionDataTable configuracion = new DS_Configuracion.configuracionDataTable();
+        DS_ConfiguracionTableAdapters.configuracionTableAdapter tableAdapter = new DS_ConfiguracionTableAdapters.configuracionTableAdapter();
+        DS_PrestamosTableAdapters.prestamosTableAdapter ta = new DS_PrestamosTableAdapters.prestamosTableAdapter();
+
         public FM_Prestamos()
         {
             InitializeComponent();
@@ -66,28 +71,29 @@ namespace BibliotecaJM
             {
                 if (Prestado.Contains("N") && librosPrestadosDataGridView.RowCount <= 5)
                 {
-                    if (dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull() || dS_Lectores.lectores[0].fecha_penalizacion_lec < DateTime.Today)
+                    if (dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull()|| dS_Lectores.lectores[0].fecha_penalizacion_lec < DateTime.Today)
                     {
-                        DS_Configuracion.configuracionDataTable configuracion = new DS_Configuracion.configuracionDataTable();
-                        DS_ConfiguracionTableAdapters.configuracionTableAdapter tableAdapter = new DS_ConfiguracionTableAdapters.configuracionTableAdapter();
                         tableAdapter.Fill(configuracion);
-
-                        DS_Prestamos.prestamosDataTable prestamos = new DS_Prestamos.prestamosDataTable();
-                        DS_PrestamosTableAdapters.prestamosTableAdapter ta = new DS_PrestamosTableAdapters.prestamosTableAdapter();
                         DS_Prestamos.prestamosRow fila = prestamos.NewprestamosRow();
 
                         fila.id_lec_pre = dS_Lectores.lectores[0].id_lec;
                         fila.id_lib_pre = dS_Libros.libros[posicion].id_lib;
-                        fila.fecha_presta_pre = DateTime.Today;
-                        fila.fecha_devol_pre = DateTime.Today.AddDays(configuracion[0].dias_prestamo_cnf);
+                        fila.fecha_presta_pre = DateTime.Now;
+                        fila.fecha_devol_pre = DateTime.Now.AddDays(configuracion[0].dias_prestamo_cnf);
                         prestamos.AddprestamosRow(fila);
                         ta.Update(prestamos);
                         MessageBox.Show("El préstamo se ha realizado correctamente");
-
-                        //dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull();
-                        Prestado.Insert(3, "S");
-                        librosTableAdapter.Update(dS_Libros.libros);
                         librosPrestadosTableAdapter.FillByID(dS_LibrosPrestados.LibrosPrestados, int.Parse(tbIDBusqueda.Text));
+
+                        dS_Libros.libros[posicion].prestado_sn_lib.Remove(0, dS_Libros.libros[posicion].prestado_sn_lib.Length);
+                        dS_Libros.libros[posicion].prestado_sn_lib="S";
+                        librosBindingSource.EndEdit();
+                        librosTableAdapter.Update(dS_Libros.libros);
+                        librosDataGridView.Update();
+
+                        //string fechaPenalizacion = dS_Lectores.lectores[0].fecha_penalizacion_lec.ToString();
+                        //fechaPenalizacion = null;
+                        //lectoresBindingSource.EndEdit();
                         //lectoresTableAdapter.Update(dS_Lectores.lectores);
                     }
                     else
