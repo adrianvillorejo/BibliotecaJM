@@ -56,6 +56,12 @@
             this.tbBusquedaLector = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbLibrosPrestados = new System.Windows.Forms.GroupBox();
+            this.librosPrestadosDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bPrestar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.librosPrestadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dS_LibrosPrestados = new BibliotecaJM.DS_LibrosPrestados();
             this.librosTableAdapter = new BibliotecaJM.DS_LibrosTableAdapters.librosTableAdapter();
@@ -64,20 +70,6 @@
             this.tableAdapterManager1 = new BibliotecaJM.DS_LectoresTableAdapters.TableAdapterManager();
             this.librosPrestadosTableAdapter = new BibliotecaJM.DS_LibrosPrestadosTableAdapters.LibrosPrestadosTableAdapter();
             this.tableAdapterManager2 = new BibliotecaJM.DS_LibrosPrestadosTableAdapters.TableAdapterManager();
-            this.dS_Historico_prestamos = new BibliotecaJM.DS_Historico_prestamos();
-            this.historico_prestamosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.historico_prestamosTableAdapter = new BibliotecaJM.DS_Historico_prestamosTableAdapters.historico_prestamosTableAdapter();
-            this.tableAdapterManager3 = new BibliotecaJM.DS_Historico_prestamosTableAdapters.TableAdapterManager();
-            this.bPrestar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.librosPrestadosDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dS_Configuracion = new BibliotecaJM.DS_Configuracion();
-            this.configuracionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.configuracionTableAdapter = new BibliotecaJM.DS_ConfiguracionTableAdapters.configuracionTableAdapter();
-            this.tableAdapterManager4 = new BibliotecaJM.DS_ConfiguracionTableAdapters.TableAdapterManager();
             id_libLabel = new System.Windows.Forms.Label();
             titulo_libLabel = new System.Windows.Forms.Label();
             autor_libLabel = new System.Windows.Forms.Label();
@@ -92,13 +84,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lectoresBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS_Lectores)).BeginInit();
             this.gbLibrosPrestados.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS_LibrosPrestados)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Historico_prestamos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.historico_prestamosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Configuracion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configuracionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // id_libLabel
@@ -347,6 +335,68 @@
             this.gbLibrosPrestados.TabStop = false;
             this.gbLibrosPrestados.Text = "Libros prestados";
             // 
+            // librosPrestadosDataGridView
+            // 
+            this.librosPrestadosDataGridView.AllowUserToAddRows = false;
+            this.librosPrestadosDataGridView.AllowUserToDeleteRows = false;
+            this.librosPrestadosDataGridView.AllowUserToResizeColumns = false;
+            this.librosPrestadosDataGridView.AllowUserToResizeRows = false;
+            this.librosPrestadosDataGridView.AutoGenerateColumns = false;
+            this.librosPrestadosDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.librosPrestadosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.librosPrestadosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.bPrestar});
+            this.librosPrestadosDataGridView.DataSource = this.librosPrestadosBindingSource;
+            this.librosPrestadosDataGridView.Location = new System.Drawing.Point(22, 30);
+            this.librosPrestadosDataGridView.MultiSelect = false;
+            this.librosPrestadosDataGridView.Name = "librosPrestadosDataGridView";
+            this.librosPrestadosDataGridView.ReadOnly = true;
+            this.librosPrestadosDataGridView.RowHeadersVisible = false;
+            this.librosPrestadosDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.librosPrestadosDataGridView.Size = new System.Drawing.Size(946, 293);
+            this.librosPrestadosDataGridView.TabIndex = 0;
+            this.librosPrestadosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.librosPrestadosDataGridView_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id_lib";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "titulo_lib";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Titulo";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "fecha_presta_pre";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Fecha de prestamo";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "fecha_devol_pre";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Fecha de devolución";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // bPrestar
+            // 
+            this.bPrestar.HeaderText = "";
+            this.bPrestar.Name = "bPrestar";
+            this.bPrestar.ReadOnly = true;
+            this.bPrestar.Text = "Realizar préstamo";
+            this.bPrestar.UseColumnTextForButtonValue = true;
+            // 
             // librosPrestadosBindingSource
             // 
             this.librosPrestadosBindingSource.DataMember = "LibrosPrestados";
@@ -387,108 +437,6 @@
             this.tableAdapterManager2.Connection = null;
             this.tableAdapterManager2.UpdateOrder = BibliotecaJM.DS_LibrosPrestadosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // dS_Historico_prestamos
-            // 
-            this.dS_Historico_prestamos.DataSetName = "DS_Historico_prestamos";
-            this.dS_Historico_prestamos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // historico_prestamosBindingSource
-            // 
-            this.historico_prestamosBindingSource.DataMember = "historico_prestamos";
-            this.historico_prestamosBindingSource.DataSource = this.dS_Historico_prestamos;
-            // 
-            // historico_prestamosTableAdapter
-            // 
-            this.historico_prestamosTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager3
-            // 
-            this.tableAdapterManager3.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager3.historico_prestamosTableAdapter = this.historico_prestamosTableAdapter;
-            this.tableAdapterManager3.UpdateOrder = BibliotecaJM.DS_Historico_prestamosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // bPrestar
-            // 
-            this.bPrestar.HeaderText = "";
-            this.bPrestar.Name = "bPrestar";
-            this.bPrestar.ReadOnly = true;
-            this.bPrestar.Text = "Realizar préstamo";
-            this.bPrestar.UseColumnTextForButtonValue = true;
-            // 
-            // librosPrestadosDataGridView
-            // 
-            this.librosPrestadosDataGridView.AllowUserToAddRows = false;
-            this.librosPrestadosDataGridView.AllowUserToDeleteRows = false;
-            this.librosPrestadosDataGridView.AllowUserToResizeColumns = false;
-            this.librosPrestadosDataGridView.AllowUserToResizeRows = false;
-            this.librosPrestadosDataGridView.AutoGenerateColumns = false;
-            this.librosPrestadosDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.librosPrestadosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.librosPrestadosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.bPrestar});
-            this.librosPrestadosDataGridView.DataSource = this.librosPrestadosBindingSource;
-            this.librosPrestadosDataGridView.Location = new System.Drawing.Point(22, 30);
-            this.librosPrestadosDataGridView.MultiSelect = false;
-            this.librosPrestadosDataGridView.Name = "librosPrestadosDataGridView";
-            this.librosPrestadosDataGridView.ReadOnly = true;
-            this.librosPrestadosDataGridView.RowHeadersVisible = false;
-            this.librosPrestadosDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.librosPrestadosDataGridView.Size = new System.Drawing.Size(946, 293);
-            this.librosPrestadosDataGridView.TabIndex = 0;
-            this.librosPrestadosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.librosPrestadosDataGridView_CellContentClick);
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "fecha_devol_pre";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Fecha de devolución";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "fecha_presta_pre";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Fecha de prestamo";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "titulo_lib";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Titulo";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "id_lib";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dS_Configuracion
-            // 
-            this.dS_Configuracion.DataSetName = "DS_Configuracion";
-            this.dS_Configuracion.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // configuracionBindingSource
-            // 
-            this.configuracionBindingSource.DataMember = "configuracion";
-            this.configuracionBindingSource.DataSource = this.dS_Configuracion;
-            // 
-            // configuracionTableAdapter
-            // 
-            this.configuracionTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager4
-            // 
-            this.tableAdapterManager4.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager4.configuracionTableAdapter = this.configuracionTableAdapter;
-            this.tableAdapterManager4.UpdateOrder = BibliotecaJM.DS_ConfiguracionTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // FM_Devoluciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,13 +455,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lectoresBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS_Lectores)).EndInit();
             this.gbLibrosPrestados.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS_LibrosPrestados)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Historico_prestamos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.historico_prestamosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.librosPrestadosDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Configuracion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configuracionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -548,19 +492,11 @@
         private System.Windows.Forms.BindingSource librosPrestadosBindingSource;
         private DS_LibrosPrestadosTableAdapters.LibrosPrestadosTableAdapter librosPrestadosTableAdapter;
         private DS_LibrosPrestadosTableAdapters.TableAdapterManager tableAdapterManager2;
-        private DS_Historico_prestamos dS_Historico_prestamos;
-        private System.Windows.Forms.BindingSource historico_prestamosBindingSource;
-        private DS_Historico_prestamosTableAdapters.historico_prestamosTableAdapter historico_prestamosTableAdapter;
-        private DS_Historico_prestamosTableAdapters.TableAdapterManager tableAdapterManager3;
         private System.Windows.Forms.DataGridView librosPrestadosDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewButtonColumn bPrestar;
-        private DS_Configuracion dS_Configuracion;
-        private System.Windows.Forms.BindingSource configuracionBindingSource;
-        private DS_ConfiguracionTableAdapters.configuracionTableAdapter configuracionTableAdapter;
-        private DS_ConfiguracionTableAdapters.TableAdapterManager tableAdapterManager4;
     }
 }

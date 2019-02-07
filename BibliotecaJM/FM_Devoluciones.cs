@@ -25,12 +25,6 @@ namespace BibliotecaJM
 
         private void FM_Devoluciones_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'dS_Configuracion.configuracion' Puede moverla o quitarla según sea necesario.
-            this.configuracionTableAdapter.Fill(this.dS_Configuracion.configuracion);
-            // TODO: esta línea de código carga datos en la tabla 'dS_Configuracion.configuracion' Puede moverla o quitarla según sea necesario.
-            this.configuracionTableAdapter.Fill(this.dS_Configuracion.configuracion);
-            // TODO: esta línea de código carga datos en la tabla 'dS_Historico_prestamos.historico_prestamos' Puede moverla o quitarla según sea necesario.
-            this.historico_prestamosTableAdapter.Fill(this.dS_Historico_prestamos.historico_prestamos);
             // TODO: esta línea de código carga datos en la tabla 'dS_LibrosPrestados.LibrosPrestados' Puede moverla o quitarla según sea necesario.
             this.librosPrestadosTableAdapter.Fill(this.dS_LibrosPrestados.LibrosPrestados);
         }
@@ -50,25 +44,7 @@ namespace BibliotecaJM
             int pos = librosBindingSource.Position;
             if (e.ColumnIndex==4)
             {
-                historico_prestamosBindingSource.AddNew();
-                dS_Historico_prestamos.historico_prestamos[0].fecha_devol_his = DateTime.Today;
-                if (dS_LibrosPrestados.LibrosPrestados[pos].fecha_devol_pre>DateTime.Today)
-                {
-                    int diasPenalizacion = DateTime.Today.DayOfYear - dS_LibrosPrestados.LibrosPrestados[pos].fecha_devol_pre.DayOfYear;
-                    if (diasPenalizacion<dS_Configuracion.configuracion[0].dias_penalizacion_cnf)
-                    {
-                        dS_Lectores.lectores[].
-                        dS_Historico_prestamos.historico_prestamos[0].
-                    }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("La fecha de devolución es superior al dia de hoy, por lo tanto serás penalizado");
-                }
+                MessageBox.Show("has pulsado el boton");
             }
         }
     }
