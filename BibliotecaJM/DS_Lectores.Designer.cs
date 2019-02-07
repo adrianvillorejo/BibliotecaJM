@@ -1048,7 +1048,7 @@ SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimi
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimie" +
@@ -1056,23 +1056,28 @@ SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimi
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimie" +
-                "nto_lec, fecha_penalizacion_lec FROM dbo.lectores\r\nWHERE id_lec = @id";
+            this._commandCollection[1].CommandText = "SELECT id_lec, nombre_lec, domicilio_lec, fecha_penalizacion_lec FROM dbo.lectore" +
+                "s";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id_lec", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_" +
-                "nacimiento_lec, fecha_penalizacion_lec\r\nFROM            lectores\r\nWHERE        (" +
-                "nombre_lec LIKE \'%\' + @nombre + \'%\')";
+            this._commandCollection[2].CommandText = "SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimie" +
+                "nto_lec, fecha_penalizacion_lec FROM dbo.lectores\r\nWHERE id_lec = @id";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nombre", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "nombre_lec", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id_lec", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        id_lec, nombre_lec, domicilio_lec, provincia_lec, fecha_penalizacio" +
-                "n_lec\r\nFROM            lectores\r\nWHERE        (nombre_lec = @nombre)";
+            this._commandCollection[3].CommandText = "SELECT        id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_" +
+                "nacimiento_lec, fecha_penalizacion_lec\r\nFROM            lectores\r\nWHERE        (" +
+                "nombre_lec LIKE \'%\' + @nombre + \'%\')";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nombre", global::System.Data.SqlDbType.NChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "nombre_lec", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nombre", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "nombre_lec", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "SELECT        id_lec, nombre_lec, domicilio_lec, provincia_lec, fecha_penalizacio" +
+                "n_lec\r\nFROM            lectores\r\nWHERE        (nombre_lec = @nombre)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nombre", global::System.Data.SqlDbType.NChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "nombre_lec", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1103,8 +1108,32 @@ SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByID(DS_Lectores.lectoresDataTable dataTable, int id) {
+        public virtual int FillByCarga(DS_Lectores.lectoresDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DS_Lectores.lectoresDataTable GetDataByCarga() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            DS_Lectores.lectoresDataTable dataTable = new DS_Lectores.lectoresDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByID(DS_Lectores.lectoresDataTable dataTable, int id) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1118,7 +1147,7 @@ SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimi
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual DS_Lectores.lectoresDataTable GetDataByID(int id) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
             DS_Lectores.lectoresDataTable dataTable = new DS_Lectores.lectoresDataTable();
             this.Adapter.Fill(dataTable);
@@ -1130,7 +1159,7 @@ SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimi
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByNombre(DS_Lectores.lectoresDataTable dataTable, string nombre) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((nombre == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1149,7 +1178,7 @@ SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimi
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual DS_Lectores.lectoresDataTable GetDataByNombre(string nombre) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((nombre == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1166,7 +1195,7 @@ SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimi
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByNombreExacto(DS_Lectores.lectoresDataTable dataTable, string nombre) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((nombre == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1185,7 +1214,7 @@ SELECT id_lec, nombre_lec, domicilio_lec, provincia_lec, email_lec, fecha_nacimi
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual DS_Lectores.lectoresDataTable GetDataByNombreExacto(string nombre) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((nombre == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }

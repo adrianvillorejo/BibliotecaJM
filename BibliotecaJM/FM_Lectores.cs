@@ -32,10 +32,8 @@ namespace BibliotecaJM
         
         private void FM_Lectores_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'dS_Lectores.lectores' Puede moverla o quitarla según sea necesario.
-            this.lectoresTableAdapter.FillByCarga(this.dS_Lectores.lectores);
+            lectoresTableAdapter.FillByCarga(dS_Lectores.lectores);
             Busqueda();
-
         }
 
         private void Busqueda()
