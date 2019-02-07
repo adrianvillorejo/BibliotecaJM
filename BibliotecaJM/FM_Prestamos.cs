@@ -37,8 +37,16 @@ namespace BibliotecaJM
 
         private void bBuscarIDLector_Click(object sender, EventArgs e)
         {
-            lectoresTableAdapter.FillByID(dS_Lectores.lectores, int.Parse(tbIDBusqueda.Text));
-            librosPrestadosTableAdapter.FillByID(dS_LibrosPrestados.LibrosPrestados, int.Parse(tbIDBusqueda.Text));
+            try
+            {
+                lectoresTableAdapter.FillByID(dS_Lectores.lectores, int.Parse(tbIDBusqueda.Text));
+                librosPrestadosTableAdapter.FillByID(dS_LibrosPrestados.LibrosPrestados, int.Parse(tbIDBusqueda.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No has introducido bien los datos o está vacía la busqueda" + ex.ToString());
+                tbIDBusqueda.Focus();
+            }
         }
 
         private void bBuscarNombre_Click(object sender, EventArgs e)
@@ -49,17 +57,29 @@ namespace BibliotecaJM
 
         private void bBuscarIDLibro_Click(object sender, EventArgs e)
         {
-            librosTableAdapter.FillByIDLibro(dS_Libros.libros, int.Parse(tbIDLibro.Text));
+            try
+            {
+                librosTableAdapter.FillByIDLibro(dS_Libros.libros, int.Parse(tbIDLibro.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No has introducido bien los datos o está vacía la busqueda" + ex.ToString());
+                tbIDLibro.Focus();
+            }
         }
 
         private void bBuscarTitulo_Click(object sender, EventArgs e)
         {
+
             librosTableAdapter.FillByTitulo(dS_Libros.libros, tbTituloLibro.Text);
+
         }
 
         private void bBuscarAutor_Click(object sender, EventArgs e)
         {
+
             librosTableAdapter.FillByAutor(dS_Libros.libros, tbAutorLibro.Text);
+
         }
 
         private void bPrestamo_Click(object sender, EventArgs e)
@@ -67,11 +87,11 @@ namespace BibliotecaJM
             int posicion = librosBindingSource.Position;
             Prestado = dS_Libros.libros[posicion].prestado_sn_lib;
 
-            if (tbIDBusqueda.Text!="")
+            if (id_lecLabel1.Text != "")
             {
                 if (Prestado.Contains("N") && librosPrestadosDataGridView.RowCount <= 5)
                 {
-                    if (dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull()|| dS_Lectores.lectores[0].fecha_penalizacion_lec < DateTime.Today)
+                    if (dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull() || dS_Lectores.lectores[0].fecha_penalizacion_lec < DateTime.Today)
                     {
                         tableAdapter.Fill(configuracion);
                         DS_Prestamos.prestamosRow fila = prestamos.NewprestamosRow();
@@ -86,7 +106,7 @@ namespace BibliotecaJM
                         librosPrestadosTableAdapter.FillByID(dS_LibrosPrestados.LibrosPrestados, int.Parse(tbIDBusqueda.Text));
 
                         dS_Libros.libros[posicion].prestado_sn_lib.Remove(0, dS_Libros.libros[posicion].prestado_sn_lib.Length);
-                        dS_Libros.libros[posicion].prestado_sn_lib="S";
+                        dS_Libros.libros[posicion].prestado_sn_lib = "S";
                         librosBindingSource.EndEdit();
                         librosTableAdapter.Update(dS_Libros.libros);
                         librosDataGridView.Update();
