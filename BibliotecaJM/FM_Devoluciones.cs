@@ -44,7 +44,17 @@ namespace BibliotecaJM
             int pos = librosBindingSource.Position;
             if (e.ColumnIndex==4)
             {
-                MessageBox.Show("has pulsado el boton");
+                DS_Prestamos.prestamosDataTable prestamos = new DS_Prestamos.prestamosDataTable();
+                DS_PrestamosTableAdapters.prestamosTableAdapter taPrestamos = new DS_PrestamosTableAdapters.prestamosTableAdapter();
+                BindingSource binding = new BindingSource();
+                taPrestamos.Fill(prestamos);
+                DS_Configuracion.configuracionDataTable configuracion = new DS_Configuracion.configuracionDataTable();
+                DS_ConfiguracionTableAdapters.configuracionTableAdapter taConfiguracion = new DS_ConfiguracionTableAdapters.configuracionTableAdapter();
+                taConfiguracion.Fill(configuracion);
+                DS_Historico_prestamos.historico_prestamosDataTable historicoPrestamos = new DS_Historico_prestamos.historico_prestamosDataTable();
+                DS_Historico_prestamosTableAdapters.historico_prestamosTableAdapter taHistorico = new DS_Historico_prestamosTableAdapters.historico_prestamosTableAdapter();
+                
+
             }
         }
     }

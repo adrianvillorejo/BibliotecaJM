@@ -72,7 +72,7 @@ namespace BibliotecaJM
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("No se ha podido eliminar el lector");
+                    MessageBox.Show("No se ha podido eliminar el lector"+ex.ToString());
                 }
             }
         }
