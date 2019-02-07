@@ -14,6 +14,7 @@ namespace BibliotecaJM
     {
 
         UsuarioActual usuarioActual = new UsuarioActual();
+        int contador = 0;
 
         public FM_Login()
         {
@@ -22,12 +23,13 @@ namespace BibliotecaJM
 
         private void bAceptar_Click(object sender, EventArgs e)
         {
+            
             string usuario = tbUsuario.Text;
             string tipo = "";
             string contraseña = tbContraseña.Text;
-
             if (!usuario.Equals("") && !contraseña.Equals(""))
             {
+                contador++;
                 if (usuariosTableAdapter.FillByLogin(dS_Usuarios.usuarios,usuario,contraseña)==1)
                 {
                     this.Visible = false;
@@ -36,6 +38,10 @@ namespace BibliotecaJM
                     usuarioActual.Nombre = usuario;
                     FM_Principal principal = new FM_Principal(usuario, tipo);
                     principal.ShowDialog();
+                    this.Close();
+                }else if (contador == 3)
+                {
+                    MessageBox.Show("Ha superado el maximo número de intentos");
                     this.Close();
                 }
                 else
