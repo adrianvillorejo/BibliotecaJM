@@ -105,20 +105,19 @@ namespace BibliotecaJM
                         MessageBox.Show("El préstamo se ha realizado correctamente");
                         librosPrestadosTableAdapter.FillByID(dS_LibrosPrestados.LibrosPrestados, int.Parse(tbIDBusqueda.Text));
 
-                        dS_Libros.libros[posicion].prestado_sn_lib.Remove(0, dS_Libros.libros[posicion].prestado_sn_lib.Length);
+                        dS_Libros.libros[posicion].prestado_sn_lib.Remove(0);
                         dS_Libros.libros[posicion].prestado_sn_lib = "S";
                         librosBindingSource.EndEdit();
                         librosTableAdapter.Update(dS_Libros.libros);
                         librosDataGridView.Update();
 
-                        //string fechaPenalizacion = dS_Lectores.lectores[0].fecha_penalizacion_lec.ToString();
-                        //fechaPenalizacion = null;
+                        //string fechaPenalizacion = dS_Lectores.lectores[0].fecha_penalizacion_lec.ToString().Remove(0);
                         //lectoresBindingSource.EndEdit();
                         //lectoresTableAdapter.Update(dS_Lectores.lectores);
                     }
                     else
                     {
-                        MessageBox.Show("El lector tiene ");
+                        MessageBox.Show("El lector tiene penalización");
                     }
                 }
                 else

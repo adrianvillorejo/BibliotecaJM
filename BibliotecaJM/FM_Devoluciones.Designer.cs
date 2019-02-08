@@ -57,11 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.gbLibrosPrestados = new System.Windows.Forms.GroupBox();
             this.librosPrestadosDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bPrestar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.librosPrestadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dS_LibrosPrestados = new BibliotecaJM.DS_LibrosPrestados();
             this.librosTableAdapter = new BibliotecaJM.DS_LibrosTableAdapters.librosTableAdapter();
@@ -70,6 +65,11 @@
             this.tableAdapterManager1 = new BibliotecaJM.DS_LectoresTableAdapters.TableAdapterManager();
             this.librosPrestadosTableAdapter = new BibliotecaJM.DS_LibrosPrestadosTableAdapters.LibrosPrestadosTableAdapter();
             this.tableAdapterManager2 = new BibliotecaJM.DS_LibrosPrestadosTableAdapters.TableAdapterManager();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bPrestar = new System.Windows.Forms.DataGridViewButtonColumn();
             id_libLabel = new System.Windows.Forms.Label();
             titulo_libLabel = new System.Windows.Forms.Label();
             autor_libLabel = new System.Windows.Forms.Label();
@@ -361,42 +361,6 @@
             this.librosPrestadosDataGridView.TabIndex = 0;
             this.librosPrestadosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.librosPrestadosDataGridView_CellContentClick);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "id_lib";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "titulo_lib";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Titulo";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "fecha_presta_pre";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Fecha de prestamo";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "fecha_devol_pre";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Fecha de devolución";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // bPrestar
-            // 
-            this.bPrestar.HeaderText = "";
-            this.bPrestar.Name = "bPrestar";
-            this.bPrestar.ReadOnly = true;
-            this.bPrestar.Text = "Realizar préstamo";
-            this.bPrestar.UseColumnTextForButtonValue = true;
-            // 
             // librosPrestadosBindingSource
             // 
             this.librosPrestadosBindingSource.DataMember = "LibrosPrestados";
@@ -436,6 +400,42 @@
             this.tableAdapterManager2.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager2.Connection = null;
             this.tableAdapterManager2.UpdateOrder = BibliotecaJM.DS_LibrosPrestadosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id_lib";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "titulo_lib";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Titulo";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "fecha_presta_pre";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Fecha de prestamo";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "fecha_devol_pre";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Fecha de devolución";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // bPrestar
+            // 
+            this.bPrestar.HeaderText = "";
+            this.bPrestar.Name = "bPrestar";
+            this.bPrestar.ReadOnly = true;
+            this.bPrestar.Text = "Realizar devolución";
+            this.bPrestar.UseColumnTextForButtonValue = true;
             // 
             // FM_Devoluciones
             // 

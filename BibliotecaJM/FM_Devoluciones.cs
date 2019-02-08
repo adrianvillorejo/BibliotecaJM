@@ -32,6 +32,7 @@ namespace BibliotecaJM
         {
             try
             {
+                librosTableAdapter.FillByIDLibro(dS_Libros.libros, int.Parse(tbBusquedaLibro.Text));
                 librosPrestadosTableAdapter.FillByIDLibro(dS_LibrosPrestados.LibrosPrestados, int.Parse(tbBusquedaLibro.Text));
             }
             catch (Exception ex)
@@ -46,6 +47,7 @@ namespace BibliotecaJM
         {
             try
             {
+                lectoresTableAdapter.FillByID(dS_Lectores.lectores, int.Parse(tbBusquedaLector.Text));
                 librosPrestadosTableAdapter.FillByID(dS_LibrosPrestados.LibrosPrestados, int.Parse(tbBusquedaLector.Text));
             }
             catch (Exception ex)
@@ -57,14 +59,14 @@ namespace BibliotecaJM
 
         private void librosPrestadosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int pos = librosBindingSource.Position;
+            int pos = librosPrestadosBindingSource.Position;
+            int idlibro = dS_LibrosPrestados.LibrosPrestados[pos].id_lib;
             if (e.ColumnIndex == 4)
             {
                 if (tbBusquedaLector.Text != "")
                 {
                     DS_Prestamos.prestamosDataTable prestamos = new DS_Prestamos.prestamosDataTable();
                     DS_PrestamosTableAdapters.prestamosTableAdapter taPrestamos = new DS_PrestamosTableAdapters.prestamosTableAdapter();
-                    BindingSource binding = new BindingSource();
                     taPrestamos.Fill(prestamos);
                     DS_Configuracion.configuracionDataTable configuracion = new DS_Configuracion.configuracionDataTable();
                     DS_ConfiguracionTableAdapters.configuracionTableAdapter taConfiguracion = new DS_ConfiguracionTableAdapters.configuracionTableAdapter();
@@ -102,19 +104,39 @@ namespace BibliotecaJM
                             }
 
                         }
-                    }else
-                            fila.fecha_devol_his = DateTime.Now;
                     }
-                    dS_Libros.libros[0].prestado_sn_lib.Remove(0, dS_Libros.libros[0].prestado_sn_lib.Length);
-                    dS_Libros.libros[0].prestado_sn_lib = "N";
-                    librosBindingSource.EndEdit();
-                    librosTableAdapter.Update(dS_Libros.libros);
-            }
-                else
-                {
-                    MessageBox.Show("Antes de devolver el libro, debes de buscar el lector que tiene ese libro");
+                    else
+                    {
+                        fila.fecha_devol_his = DateTime.Now;
+                    }
+                    if (librosTableAdapter.FillByIDLibro(dS_Libros.libros, idlibro)==1)
+                    {
+                        dS_Libros.libros[0].prestado_sn_lib.Remove(0, dS_Libros.libros[0].prestado_sn_lib.Length);
+                        dS_Libros.libros[0].prestado_sn_lib = "N";
+                        librosBindingSource.EndEdit();
+                        librosTableAdapter.Update(dS_Libros.libros);
+                    }
+                    
+                    for (int i = 0; i < prestamos.Count; i++)
+                    {
+                        if (prestamos[i].id_lib_pre== idlibro)
+                        {
+                            prestamos[i].Delete();
+                            taPrestamos.Update(prestamos);
+                            MessageBox.Show("El libro se ha devuelto correctamente");
+                        }
+                    }
+                    librosPrestadosTableAdapter.FillByID(dS_LibrosPrestados.LibrosPrestados, int.Parse(id_lecLabel1.Text));
+
                 }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Antes de devolver el libro, debes de buscar el lector que tiene ese libro");
             }
         }
     }
 }
+
