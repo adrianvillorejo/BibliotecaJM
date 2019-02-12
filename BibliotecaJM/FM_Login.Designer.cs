@@ -28,21 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label nombre_usuLabel;
             System.Windows.Forms.Label password_usuLabel;
             this.bAceptar = new System.Windows.Forms.Button();
             this.bCancelar = new System.Windows.Forms.Button();
-            this.dS_Usuarios = new BibliotecaJM.DS_Usuarios();
-            this.usuariosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usuariosTableAdapter = new BibliotecaJM.DS_UsuariosTableAdapters.usuariosTableAdapter();
-            this.tableAdapterManager = new BibliotecaJM.DS_UsuariosTableAdapters.TableAdapterManager();
             this.tbUsuario = new System.Windows.Forms.TextBox();
             this.tbContraseña = new System.Windows.Forms.TextBox();
             nombre_usuLabel = new System.Windows.Forms.Label();
             password_usuLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Usuarios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usuariosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // nombre_usuLabel
@@ -83,29 +76,8 @@
             this.bCancelar.UseVisualStyleBackColor = true;
             this.bCancelar.Click += new System.EventHandler(this.bCancelar_Click);
             // 
-            // dS_Usuarios
-            // 
-            this.dS_Usuarios.DataSetName = "DS_Usuarios";
-            this.dS_Usuarios.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // usuariosBindingSource
-            // 
-            this.usuariosBindingSource.DataMember = "usuarios";
-            this.usuariosBindingSource.DataSource = this.dS_Usuarios;
-            // 
-            // usuariosTableAdapter
-            // 
-            this.usuariosTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.UpdateOrder = BibliotecaJM.DS_UsuariosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.usuariosTableAdapter = this.usuariosTableAdapter;
-            // 
             // tbUsuario
             // 
-            this.tbUsuario.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usuariosBindingSource, "nombre_usu", true));
             this.tbUsuario.Location = new System.Drawing.Point(172, 88);
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(254, 20);
@@ -113,7 +85,6 @@
             // 
             // tbContraseña
             // 
-            this.tbContraseña.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usuariosBindingSource, "password_usu", true));
             this.tbContraseña.Location = new System.Drawing.Point(172, 140);
             this.tbContraseña.Name = "tbContraseña";
             this.tbContraseña.PasswordChar = '*';
@@ -133,8 +104,6 @@
             this.Controls.Add(this.bAceptar);
             this.Name = "FM_Login";
             this.Text = "FM_Login";
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Usuarios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usuariosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,10 +112,6 @@
         #endregion
         private System.Windows.Forms.Button bAceptar;
         private System.Windows.Forms.Button bCancelar;
-        private DS_Usuarios dS_Usuarios;
-        private System.Windows.Forms.BindingSource usuariosBindingSource;
-        private DS_UsuariosTableAdapters.usuariosTableAdapter usuariosTableAdapter;
-        private DS_UsuariosTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.TextBox tbUsuario;
         private System.Windows.Forms.TextBox tbContraseña;
     }

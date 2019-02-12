@@ -16,7 +16,7 @@ namespace BibliotecaJM
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FM_Login());
+            Application.Run(new FM_Principal());
         }
     }
 }

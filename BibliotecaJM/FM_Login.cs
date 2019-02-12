@@ -12,8 +12,9 @@ namespace BibliotecaJM
 {
     public partial class FM_Login : Form
     {
-
-        UsuarioActual usuarioActual = new UsuarioActual();
+        DS_Usuarios.usuariosDataTable dsUsuarios = new DS_Usuarios.usuariosDataTable();
+        DS_UsuariosTableAdapters.usuariosTableAdapter taUsuarios = new DS_UsuariosTableAdapters.usuariosTableAdapter();
+        public UsuarioActual usuarioActual { get; set; }
         int contador = 0;
 
         public FM_Login()
@@ -23,41 +24,37 @@ namespace BibliotecaJM
 
         private void bAceptar_Click(object sender, EventArgs e)
         {
-            
-            string usuario = tbUsuario.Text;
-            string tipo = "";
-            string contraseña = tbContraseña.Text;
-            if (!usuario.Equals("") && !contraseña.Equals(""))
+
+            if (contador == 2)
             {
+                this.Close();
+            }
+
+            var usuario = new DS_Usuarios.usuariosDataTable();
+            var ta = new DS_UsuariosTableAdapters.usuariosTableAdapter();
+            var n = ta.FillByLogin(usuario, tbUsuario.Text);
+            
+
+            if (n == 0)
+            {
+                MessageBox.Show("Usuario o contraseña incorrectas");
                 contador++;
-                if (usuariosTableAdapter.FillByLogin(dS_Usuarios.usuarios,usuario,contraseña)==1)
+            }
+            else
+            {
+                if (tbContraseña.Text == usuario[0].password_usu.Trim())
                 {
-                    this.Visible = false;
-                    int posicion = usuariosBindingSource.Position;
-                    tipo = dS_Usuarios.usuarios[posicion].tipo_usu;
-                    usuarioActual.Nombre = usuario;
-                    FM_Principal principal = new FM_Principal(usuario, tipo);
-                    principal.ShowDialog();
-                    this.Close();
-                }else if (contador == 3)
-                {
-                    MessageBox.Show("Ha superado el maximo número de intentos");
+                    usuarioActual = new UsuarioActual();
+                    usuarioActual.Nombre = tbUsuario.Text;
+                    usuarioActual.TipoUsuario = usuario[0].tipo_usu;
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos");
-                    tbUsuario.Text = "";
-                    tbContraseña.Text = "";
-                    tbUsuario.Focus();
+                    MessageBox.Show("Usuario o contraseña incorrectas. Te quedan {3-nIntentos} intentos");
+                    contador++;
                 }
-            }
-            else
-            {
-                MessageBox.Show("Rellena todos los campos");
-                tbUsuario.Text = "";
-                tbContraseña.Text = "";
-                tbUsuario.Focus();
+
             }
         }
 

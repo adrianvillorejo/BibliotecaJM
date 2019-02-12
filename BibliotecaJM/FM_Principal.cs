@@ -13,7 +13,18 @@ namespace BibliotecaJM
     public partial class FM_Principal : Form
     {
         UsuarioActual usuarioActual = new UsuarioActual();
-        FM_Login fm = new FM_Login();
+
+        private void FM_Principal_Shown(object sender, EventArgs e)
+        {
+            FM_Login fm = new FM_Login();
+            fm.ShowDialog();
+            if (fm.usuarioActual == null)
+            {
+                this.Close();
+            }
+            this.usuarioActual = fm.usuarioActual;
+        }
+
         public FM_Principal()
         {
             InitializeComponent();
@@ -109,5 +120,6 @@ namespace BibliotecaJM
             foreach (ToolStripButton boton in toolStrip1.Items)
                 boton.CheckState = CheckState.Unchecked;
         }
+
     }
 }
