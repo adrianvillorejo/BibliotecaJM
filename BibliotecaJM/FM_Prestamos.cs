@@ -15,8 +15,8 @@ namespace BibliotecaJM
 
         DS_Prestamos.prestamosDataTable prestamos = new DS_Prestamos.prestamosDataTable();
         DS_Configuracion.configuracionDataTable configuracion = new DS_Configuracion.configuracionDataTable();
-        DS_ConfiguracionTableAdapters.configuracionTableAdapter tableAdapter = new DS_ConfiguracionTableAdapters.configuracionTableAdapter();
-        DS_PrestamosTableAdapters.prestamosTableAdapter ta = new DS_PrestamosTableAdapters.prestamosTableAdapter();
+        DS_ConfiguracionTableAdapters.configuracionTableAdapter taConfiguracion = new DS_ConfiguracionTableAdapters.configuracionTableAdapter();
+        DS_PrestamosTableAdapters.prestamosTableAdapter taPrestamos = new DS_PrestamosTableAdapters.prestamosTableAdapter();
 
         public FM_Prestamos()
         {
@@ -93,7 +93,7 @@ namespace BibliotecaJM
                 {
                     if (dS_Lectores.lectores[0].Isfecha_penalizacion_lecNull() || dS_Lectores.lectores[0].fecha_penalizacion_lec < DateTime.Today)
                     {
-                        tableAdapter.Fill(configuracion);
+                        taConfiguracion.Fill(configuracion);
                         DS_Prestamos.prestamosRow fila = prestamos.NewprestamosRow();
 
                         fila.id_lec_pre = dS_Lectores.lectores[0].id_lec;
@@ -101,7 +101,7 @@ namespace BibliotecaJM
                         fila.fecha_presta_pre = DateTime.Now;
                         fila.fecha_devol_pre = DateTime.Now.AddDays(configuracion[0].dias_prestamo_cnf);
                         prestamos.AddprestamosRow(fila);
-                        ta.Update(prestamos);
+                        taPrestamos.Update(prestamos);
                         MessageBox.Show("El préstamo se ha realizado correctamente");
                         librosPrestadosTableAdapter.FillByID(dS_LibrosPrestados.LibrosPrestados, int.Parse(tbIDBusqueda.Text));
 
@@ -111,9 +111,10 @@ namespace BibliotecaJM
                         librosTableAdapter.Update(dS_Libros.libros);
                         librosDataGridView.Update();
 
-                        //string fechaPenalizacion = dS_Lectores.lectores[0].fecha_penalizacion_lec.ToString().Remove(0);
-                        //lectoresBindingSource.EndEdit();
-                        //lectoresTableAdapter.Update(dS_Lectores.lectores);
+                        dS_Lectores.lectores[0].Setfecha_penalizacion_lecNull();
+                        lectoresBindingSource.EndEdit();
+                        lectoresTableAdapter.Update(dS_Lectores.lectores);
+
                     }
                     else
                     {
